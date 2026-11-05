@@ -1,7 +1,7 @@
 <?php
 namespace App\Api;
 
-use Magrathea2\MagratheaApiControl;
+use Magrathea\MagratheaApiControl;
 
 class BenchApiControl extends MagratheaApiControl {
 

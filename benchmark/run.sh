@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Benchmarks MagratheaPHP2 vs Slim, Laravel and Symfony.
+# Benchmarks MagratheaPHP 3 vs Slim, Laravel and Symfony.
 # Usage: ./run.sh            (build + bench everything)
 #        DURATION=60s ./run.sh
 set -euo pipefail

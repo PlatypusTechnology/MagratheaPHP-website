@@ -1,5 +1,10 @@
 {
+    "repositories": [
+        { "type": "vcs", "url": "https://github.com/PlatypusTechnology/MagratheaPHP3" }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "platypustechnology/magratheaphp2": "^2.1"
+        "platypustechnology/magratheaphp": "dev-master"
     }
 }

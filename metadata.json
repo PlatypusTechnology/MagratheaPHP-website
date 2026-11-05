@@ -1,6 +1,6 @@
 {
   "name": "MagratheaPHP",
-  "description": "Institutional website for the lightweight, high-performance Magrathea PHP framework, complete with interactive code blocks, live benchmarks, and visual database tool simulation.",
+  "description": "Institutional website for MagratheaPHP 3, the lightweight PHP framework built for the age of agents, with interactive code blocks, live benchmarks, a CLI showcase and an admin Database section simulation.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

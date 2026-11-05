@@ -1,270 +1,266 @@
-<!-- Background Grid and Glows -->
-<div class="fixed inset-0 pointer-events-none z-0">
-  <div class="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[140px]"></div>
-  <div class="absolute bottom-[20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/5 rounded-full blur-[120px]"></div>
-  <div class="absolute top-[40%] left-[40%] w-[800px] h-[800px] bg-cyan-600/5 rounded-full blur-[180px]"></div>
-  <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+<!-- Background: warm starfield glow + grid -->
+<div class="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+  <div class="absolute top-[-15%] right-[-10%] w-[700px] h-[700px] bg-brand-500/[0.07] rounded-full blur-[160px]"></div>
+  <div class="absolute bottom-[10%] left-[-15%] w-[600px] h-[600px] bg-violet-700/[0.06] rounded-full blur-[140px]"></div>
+  <div class="absolute top-[45%] left-[35%] w-[800px] h-[800px] bg-brand-800/[0.07] rounded-full blur-[200px]"></div>
+  <div class="absolute inset-0 bg-[linear-gradient(rgba(255,240,220,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,240,220,0.018)_1px,transparent_1px)] bg-[size:56px_56px]"></div>
 </div>
 
-<!-- Header Navigation -->
-<header class="relative z-10 border-b border-white/5 bg-black/40 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-6 sm:px-12 py-4 flex items-center justify-between">
-    <a href="#" class="flex items-center gap-3.5 group">
-      <div class="w-11 h-11 transition-transform duration-300 group-hover:rotate-12">
-        <img src="assets/logo.png" alt="Magrathea Logo" class="w-full h-full" referrerpolicy="no-referrer" />
-      </div>
+<!-- ============================================================ HEADER -->
+<header class="sticky top-0 z-30 border-b border-white/5 bg-space-950/70 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-3.5 flex items-center justify-between gap-4">
+    <a href="#" class="flex items-center gap-3 group shrink-0">
+      <img src="assets/logo-monocolor.png" alt="MagratheaPHP logo" class="h-10 w-auto transition-transform duration-300 group-hover:-rotate-6" />
       <div class="flex flex-col leading-none">
-        <span class="text-2xl font-extrabold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
-          MAGRATHEA<span class="text-cyan-400">PHP</span>
+        <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">
+          MAGRATHEA<span class="text-brand-400">PHP</span>
         </span>
-        <span class="text-[9px] text-gray-500 uppercase tracking-widest mt-1 font-mono font-semibold">v2.0 Framework</span>
+        <span class="text-[9px] text-stone-500 uppercase tracking-[0.2em] mt-1 font-mono font-semibold">Version 3</span>
       </div>
     </a>
 
-    <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-      <a href="#features" class="text-white/70 hover:text-cyan-400 transition-colors">Core Features</a>
-      <a href="#benchmarks" class="text-white/70 hover:text-cyan-400 transition-colors">Benchmarks</a>
-      <a href="https://www.platypusweb.com.br/magratheaphp2/docs/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-all hover:border-cyan-500/30 text-white flex items-center gap-1.5">
-        Docs <span class="material-icons text-sm">open_in_new</span>
-      </a>
-      <a href="https://github.com/PlatypusTechnology/MagratheaPHP2" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 bg-cyan-500 text-black font-bold rounded-lg hover:bg-cyan-400 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)]">
-        <span>GitHub</span>
-        <span class="material-icons text-base">code</span>
-      </a>
-      <a href="https://platypusweb.com.br" target="_blank" rel="noopener noreferrer" class="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity" title="Platypus Web">
-        <img src="assets/platypus-logo.svg" alt="Platypus Web" class="w-full h-full" />
-      </a>
+    <nav class="hidden lg:flex items-center gap-7 text-sm font-medium" aria-label="Main">
+      @for (item of navItems; track item.href) {
+        <a [href]="item.href" class="text-stone-300/80 hover:text-brand-300 transition-colors">{{ item.label }}</a>
+      }
     </nav>
 
-    <!-- Mobile Nav Trigger -->
-    <button (click)="toggleMobileMenu()" class="md:hidden flex items-center justify-center p-2 rounded-lg text-white/70 hover:text-cyan-400 hover:bg-white/5">
+    <div class="hidden lg:flex items-center gap-3">
+      <a [href]="links.docs" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-sm bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 hover:border-brand-500/30 transition-all text-white flex items-center gap-1.5">
+        Docs <span class="material-icons !text-sm">open_in_new</span>
+      </a>
+      <a [href]="links.github" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 text-sm bg-brand-400 text-space-950 font-bold rounded-lg hover:bg-brand-300 transition-all shadow-[0_0_18px_rgba(253,183,33,0.25)] hover:shadow-[0_0_28px_rgba(253,183,33,0.45)]">
+        GitHub <span class="material-icons !text-base">code</span>
+      </a>
+      <a [href]="links.platypus" target="_blank" rel="noopener noreferrer" class="w-8 h-8 opacity-70 hover:opacity-100 transition-opacity" title="Platypus Web">
+        <img src="assets/platypus-logo.svg" alt="Platypus Web" class="w-full h-full" />
+      </a>
+    </div>
+
+    <button (click)="toggleMobileMenu()" class="lg:hidden flex items-center justify-center p-2 rounded-lg text-stone-300 hover:text-brand-300 hover:bg-white/5" [attr.aria-expanded]="mobileMenuOpen()" aria-label="Menu">
       <span class="material-icons">{{ mobileMenuOpen() ? 'close' : 'menu' }}</span>
     </button>
   </div>
 
-  <!-- Mobile Navigation Drawer -->
   @if (mobileMenuOpen()) {
-    <div class="md:hidden border-b border-white/5 bg-[#08090d]/95 backdrop-blur-lg px-6 py-6 space-y-4">
-      <a href="#features" (click)="toggleMobileMenu()" class="block text-white/70 hover:text-cyan-400 py-2 border-b border-white/5 transition-colors">Core Features</a>
-      <a href="#benchmarks" (click)="toggleMobileMenu()" class="block text-white/70 hover:text-cyan-400 py-2 border-b border-white/5 transition-colors">Benchmarks</a>
-      <div class="flex gap-4 pt-4">
-        <a href="https://www.platypusweb.com.br/magratheaphp2/docs/" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-all text-white flex items-center justify-center gap-1">
-          Docs <span class="material-icons text-sm">open_in_new</span>
+    <div class="lg:hidden border-t border-white/5 bg-space-900/95 backdrop-blur-lg px-4 sm:px-8 py-5 space-y-1">
+      @for (item of navItems; track item.href) {
+        <a [href]="item.href" (click)="toggleMobileMenu()" class="block text-stone-300 hover:text-brand-300 py-2.5 border-b border-white/5 transition-colors">{{ item.label }}</a>
+      }
+      <div class="flex gap-3 pt-4">
+        <a [href]="links.docs" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 bg-white/5 border border-white/10 rounded-lg text-white flex items-center justify-center gap-1">
+          Docs <span class="material-icons !text-sm">open_in_new</span>
         </a>
-        <a href="https://github.com/PlatypusTechnology/MagratheaPHP2" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 bg-cyan-500 text-black font-bold rounded-lg hover:bg-cyan-400 transition-all flex items-center justify-center gap-1.5">
-          <span>GitHub</span>
-          <span class="material-icons text-base">code</span>
-        </a>
-        <a href="https://platypusweb.com.br" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity" title="Platypus Web">
-          <img src="assets/platypus-logo.svg" alt="Platypus Web" class="w-full h-full" />
+        <a [href]="links.github" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 bg-brand-400 text-space-950 font-bold rounded-lg flex items-center justify-center gap-1.5">
+          GitHub <span class="material-icons !text-base">code</span>
         </a>
       </div>
     </div>
   }
 </header>
 
-<!-- Hero Section -->
-<section class="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 pt-16 pb-24 lg:pt-24 lg:pb-32 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-  <div class="lg:col-span-7 space-y-8">
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/5 text-cyan-400 text-xs font-semibold tracking-wider uppercase">
-      <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
-      Planetary-Scale Performance
-    </div>
-    <h1 class="text-5xl sm:text-7xl font-black leading-[1.05] tracking-tight text-white">
-      Build your <br/><span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-blue-400">universe.</span>
+<main class="relative z-10">
+
+<!-- ============================================================ HERO -->
+<section class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-14 pb-20 lg:pt-24 lg:pb-28 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+  <div class="lg:col-span-6 space-y-7">
+    <a href="#whats-new" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-500/30 bg-brand-500/[0.07] text-brand-300 text-xs font-semibold tracking-wide hover:border-brand-400/60 transition-colors">
+      <span class="w-1.5 h-1.5 rounded-full bg-brand-400 animate-pulse"></span>
+      MagratheaPHP 3.0 is here
+      <span class="material-icons !text-sm">arrow_forward</span>
+    </a>
+
+    <h1 class="text-5xl sm:text-7xl font-black leading-[1.02] tracking-tight text-white">
+      Build your<br/><span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-200 via-brand-400 to-brand-600">universe.</span>
     </h1>
-    <p class="text-lg sm:text-xl text-gray-400 max-w-xl leading-relaxed font-light">
-      The most elegant, minimalist PHP framework designed for architects who demand extreme performance, modern database mapping, and rapid visual code generation without the boilerplate bloat.
+
+    <p class="text-lg sm:text-xl text-stone-400 max-w-xl leading-relaxed font-light">
+      A lightweight PHP framework with an ORM, a REST API with JWT, an admin panel and a CLI. It has a short list of dependencies and
+      <span class="text-stone-100 font-normal">generates no code</span>: you, or your AI agent, write small classes that are easy to read,
+      and Magrathea checks them against the database.
     </p>
-    
-    <div class="flex flex-wrap gap-4 pt-2">
-      <a href="#get-started" class="px-6 py-3.5 bg-cyan-500 text-black font-bold rounded-xl hover:bg-cyan-400 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:shadow-[0_0_35px_rgba(6,182,212,0.45)]">
-        <span>Get Started</span>
-        <span class="material-icons">arrow_forward</span>
+
+    <div class="flex flex-wrap gap-3 pt-1">
+      <a href="#get-started" class="px-6 py-3.5 bg-brand-400 text-space-950 font-bold rounded-xl hover:bg-brand-300 transition-all flex items-center gap-2 shadow-[0_0_24px_rgba(253,183,33,0.25)] hover:shadow-[0_0_38px_rgba(253,183,33,0.45)]">
+        Get started <span class="material-icons">arrow_forward</span>
       </a>
-      <a href="https://www.platypusweb.com.br/magratheaphp2/docs/" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all text-white flex items-center gap-2">
-        <span>Read Documentation</span>
-        <span class="material-icons">description</span>
+      <a [href]="links.docs" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all text-white flex items-center gap-2">
+        Read the docs <span class="material-icons">menu_book</span>
       </a>
     </div>
 
-    <div class="flex gap-8 pt-6 border-t border-white/5 max-w-lg">
-      <div class="flex flex-col">
-        <span class="text-3xl sm:text-4xl font-mono font-bold text-white tracking-tight">0.72ms</span>
-        <span class="text-[10px] text-gray-500 uppercase font-mono tracking-widest mt-1">CPU Time / Request</span>
+    <dl class="grid grid-cols-3 gap-4 pt-6 border-t border-white/5 max-w-lg">
+      <div class="flex flex-col-reverse gap-1">
+        <dt class="text-[10px] text-stone-500 uppercase font-mono tracking-widest">req/s on 1 vCPU</dt>
+        <dd class="text-2xl sm:text-4xl font-mono font-bold text-white tracking-tight">{{ stats.rps }}</dd>
       </div>
-      <div class="w-px h-12 bg-white/10 self-center"></div>
-      <div class="flex flex-col">
-        <span class="text-3xl sm:text-4xl font-mono font-bold text-white tracking-tight">0.3MB</span>
-        <span class="text-[10px] text-gray-500 uppercase font-mono tracking-widest mt-1">Peak Mem / Request</span>
+      <div class="flex flex-col-reverse gap-1">
+        <dt class="text-[10px] text-stone-500 uppercase font-mono tracking-widest">Peak mem / req</dt>
+        <dd class="text-2xl sm:text-4xl font-mono font-bold text-white tracking-tight">{{ stats.mem }}<span class="text-lg text-stone-400">MB</span></dd>
       </div>
-      <div class="w-px h-12 bg-white/10 self-center"></div>
-      <div class="flex flex-col">
-        <span class="text-3xl sm:text-4xl font-mono font-bold text-white tracking-tight">Zero</span>
-        <span class="text-[10px] text-gray-500 uppercase font-mono tracking-widest mt-1">Boilerplate</span>
+      <div class="flex flex-col-reverse gap-1">
+        <dt class="text-[10px] text-stone-500 uppercase font-mono tracking-widest">Generated files</dt>
+        <dd class="text-2xl sm:text-4xl font-mono font-bold text-brand-300 tracking-tight">0</dd>
       </div>
-    </div>
+    </dl>
   </div>
 
-  <!-- Right Column: Code Window Mockup -->
-  <div class="lg:col-span-5 relative">
-    <!-- Glow Effect Behind Window -->
-    <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-500/25 to-purple-500/25 rounded-2xl blur-2xl opacity-75 -z-10 animate-pulse" style="animation-duration: 8s;"></div>
-    
-    <!-- Code Window Card -->
-    <div class="w-full bg-[#0c0d11] border border-white/10 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-md">
-      <!-- Window Header / Tabs -->
-      <div class="flex items-center justify-between px-5 py-3.5 bg-[#12141a] border-b border-white/5">
-        <div class="flex items-center gap-2">
-          <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-          <div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-          <div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+  <!-- Code window -->
+  <div class="lg:col-span-6 relative min-w-0">
+    <img src="assets/logo.png" alt="" aria-hidden="true" class="hidden lg:block absolute -top-16 -right-10 w-40 opacity-90 animate-float drop-shadow-[0_0_40px_rgba(247,153,20,0.35)] -z-0" />
+    <div class="absolute -inset-2 bg-gradient-to-br from-brand-500/25 via-transparent to-violet-600/20 rounded-3xl blur-2xl opacity-70 -z-10"></div>
+
+    <div class="relative w-full bg-space-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-4 px-4 py-3 bg-space-850 border-b border-white/5">
+        <div class="flex items-center gap-1.5 shrink-0" aria-hidden="true">
+          <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
         </div>
-        <!-- Interactive Tabs -->
-        <div class="flex gap-2">
-          <button (click)="switchCodeTab('routing')" [class]="codeTab() === 'routing' ? 'px-3 py-1 rounded text-xs font-mono font-medium text-cyan-400 bg-white/5 border border-cyan-500/20' : 'px-3 py-1 rounded text-xs font-mono font-medium text-gray-400 hover:text-white transition-colors'">index.php</button>
-          <button (click)="switchCodeTab('config')" [class]="codeTab() === 'config' ? 'px-3 py-1 rounded text-xs font-mono font-medium text-cyan-400 bg-white/5 border border-cyan-500/20' : 'px-3 py-1 rounded text-xs font-mono font-medium text-gray-400 hover:text-white transition-colors'">magrathea.conf</button>
-          <button (click)="switchCodeTab('orm')" [class]="codeTab() === 'orm' ? 'px-3 py-1 rounded text-xs font-mono font-medium text-cyan-400 bg-white/5 border border-cyan-500/20' : 'px-3 py-1 rounded text-xs font-mono font-medium text-gray-400 hover:text-white transition-colors'">Planet.php</button>
+        <div class="flex gap-1 overflow-x-auto" role="tablist">
+          @for (s of heroSnippets; track s.id) {
+            <button role="tab" [attr.aria-selected]="heroTab() === s.id" (click)="heroTab.set(s.id)"
+              class="px-3 py-1 rounded-md text-xs font-mono whitespace-nowrap transition-colors cursor-pointer border"
+              [class]="heroTab() === s.id ? 'text-brand-300 bg-white/5 border-brand-500/25' : 'text-stone-400 hover:text-white border-transparent'">
+              @if (s.lang === 'term') { <span class="material-icons !text-xs align-[-2px] mr-1">terminal</span> }{{ s.file }}
+            </button>
+          }
         </div>
       </div>
-      
-      <!-- Code Blocks -->
-      <div class="p-6 sm:p-8 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto min-h-[280px]">
-        <!-- Routing Code -->
-        @if (codeTab() === 'routing') {
-          <div class="space-y-1">
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">1</span><span class="text-purple-400">&lt;?php</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">2</span><span><span class="text-purple-400">use</span>&nbsp;<span class="text-blue-300">Magrathea2\MagratheaApi</span>;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">3</span><span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">4</span><span><span class="text-purple-400">require</span>&nbsp;<span class="text-orange-300">"../app/_inc.php"</span>; <span class="text-gray-500">// Magrathea bootstrap</span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">5</span><span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">6</span><span class="text-gray-500">// Easily build elegant, fast routes</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">7</span><span><span class="text-blue-400">$api</span> = <span class="text-purple-400">new</span>&nbsp;<span class="text-yellow-200">MagratheaApi</span>();</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">8</span><span><span class="text-blue-400">$planets</span> = <span class="text-purple-400">new</span>&nbsp;<span class="text-yellow-200">PlanetApiControl</span>();</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">9</span><span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">10</span><span><span class="text-blue-400">$api</span>-&gt;<span class="text-emerald-400">Add</span>(<span class="text-orange-300">"GET"</span>, <span class="text-orange-300">"planets"</span>, <span class="text-blue-400">$planets</span>, <span class="text-orange-300">"List"</span>);</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">11</span><span><span class="text-blue-400">$api</span>-&gt;<span class="text-emerald-400">Add</span>(<span class="text-orange-300">"GET"</span>, <span class="text-orange-300">"planets/:id"</span>, <span class="text-blue-400">$planets</span>, <span class="text-orange-300">"Read"</span>);</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">12</span><span><span class="text-blue-400">$api</span>-&gt;<span class="text-emerald-400">Run</span>();</span></div>
-          </div>
-        }
-
-        <!-- Config Code -->
-        @if (codeTab() === 'config') {
-          <div class="space-y-1">
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">1</span><span class="text-amber-500">[general]</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">2</span><span>&nbsp;&nbsp;<span class="text-blue-300">use_environment</span> = <span class="text-orange-300">"dev"</span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">3</span><span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">4</span><span class="text-amber-500">[dev]</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">5</span><span>&nbsp;&nbsp;<span class="text-blue-300">db_host</span> = <span class="text-orange-300">"localhost"</span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">6</span><span>&nbsp;&nbsp;<span class="text-blue-300">db_name</span> = <span class="text-orange-300">"magrathea_db"</span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">7</span><span>&nbsp;&nbsp;<span class="text-blue-300">db_user</span> = <span class="text-orange-300">"root"</span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">8</span><span>&nbsp;&nbsp;<span class="text-blue-300">db_pass</span> = <span class="text-orange-300">"root_password"</span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">9</span><span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">10</span><span class="text-amber-500">[production]</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">11</span><span>&nbsp;&nbsp;<span class="text-blue-300">db_host</span> = <span class="text-orange-300">"10.0.0.8"</span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">12</span><span>&nbsp;&nbsp;<span class="text-blue-300">db_name</span> = <span class="text-orange-300">"magrathea_production"</span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">13</span><span>&nbsp;&nbsp;<span class="text-blue-300">db_user</span> = <span class="text-orange-300">"prod_admin"</span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">14</span><span>&nbsp;&nbsp;<span class="text-blue-300">db_pass</span> = <span class="text-orange-300">"$=DB_PASSWORD"</span></span></div>
-          </div>
-        }
-
-        <!-- ORM Code -->
-        @if (codeTab() === 'orm') {
-          <div class="space-y-1">
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">1</span><span class="text-purple-400">&lt;?php</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">2</span><span><span class="text-purple-400 font-semibold">class</span>&nbsp;<span class="text-yellow-200">Planet</span>&nbsp;<span class="text-purple-400">extends</span>&nbsp;<span class="text-blue-300">\Magrathea2\MagratheaModel</span> &#123;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">3</span><span>&nbsp;&nbsp;<span class="text-purple-400">public</span>&nbsp;<span class="text-blue-400">$id</span>, <span class="text-blue-400">$name</span>, <span class="text-blue-400">$diameter</span>;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">4</span><span>&nbsp;&nbsp;<span class="text-purple-400">public function</span>&nbsp;<span class="text-emerald-400">MagratheaStart</span>() &#123;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">5</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">$this</span>-&gt;<span class="text-blue-300">dbTable</span> = <span class="text-orange-300">"planets"</span>;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">6</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">$this</span>-&gt;<span class="text-blue-300">dbValues</span>[<span class="text-orange-300">"id"</span>] = <span class="text-orange-300">"int"</span>;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">7</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">$this</span>-&gt;<span class="text-blue-300">dbValues</span>[<span class="text-orange-300">"name"</span>] = <span class="text-orange-300">"string"</span>;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">8</span><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">$this</span>-&gt;<span class="text-blue-300">dbValues</span>[<span class="text-orange-300">"diameter"</span>] = <span class="text-orange-300">"float"</span>;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">9</span><span>&nbsp;&nbsp;&#125;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">10</span><span>&#125;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">11</span><span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">12</span><span class="text-gray-500">// Objects map straight to table rows</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">13</span><span><span class="text-blue-400">$earth</span> = <span class="text-purple-400">new</span>&nbsp;<span class="text-yellow-200">Planet</span>(<span class="text-amber-400">1</span>); <span class="text-gray-500">// loads id 1</span></span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">14</span><span><span class="text-blue-400">$earth</span>-&gt;<span class="text-blue-300">name</span> = <span class="text-orange-300">"New Earth"</span>;</span></div>
-            <div class="flex gap-4"><span class="text-gray-600 select-none w-5 text-right font-semibold">15</span><span><span class="text-blue-400">$earth</span>-&gt;<span class="text-emerald-400">Save</span>();</span></div>
-          </div>
-        }
-      </div>
+      <pre class="code p-5 sm:p-6 text-[11.5px] sm:text-[13px] leading-relaxed overflow-x-auto min-h-[360px] text-stone-300"><code [innerHTML]="heroSnippet().html"></code></pre>
     </div>
   </div>
 </section>
 
-<!-- Hitchhiker's Guide Curiosity Section (Below Hero) -->
-<section class="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 pb-16">
-  <div class="relative rounded-3xl bg-gradient-to-r from-purple-900/30 via-slate-900/80 to-cyan-900/30 border border-cyan-500/20 p-8 sm:p-10 backdrop-blur-xl overflow-hidden shadow-2xl">
-    <!-- Subtle Background Glows -->
-    <div class="absolute -top-16 -right-16 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-16 -left-16 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- ============================================================ WHAT'S NEW -->
+<section id="whats-new" class="border-t border-white/5 bg-space-900/60 py-24 scroll-mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
+    <div class="max-w-3xl mb-14 space-y-4">
+      <span class="text-brand-400 font-mono text-xs uppercase tracking-[0.2em] font-bold">New in 3.0</span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">The framework stopped writing your code.</h2>
+      <p class="text-stone-400 text-lg leading-relaxed">
+        In 3.0, people and agents write the application code, and the framework no longer generates it.
+        What the generator used to write is now a small, explicit contract that is safe to write by hand.
+        The project's state can be read as data: in the admin, in the Setup Wizard, and from a CLI.
+      </p>
+    </div>
 
-    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      <!-- Left Column: Icon / Badge & Quote -->
+    <!-- Before / after -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16">
+      <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+        <div class="rounded-2xl border border-white/5 bg-space-950/60 p-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono font-bold text-stone-400 uppercase tracking-wider">2.x: generated</span>
+            <span class="text-[10px] font-mono text-stone-500">5 files per model</span>
+          </div>
+          <ul class="space-y-1.5 font-mono text-[11.5px]">
+            @for (f of treeV2; track f.name) {
+              <li class="flex items-baseline justify-between gap-3">
+                <span [class]="f.gone ? 'text-stone-500 line-through decoration-red-400/60' : 'text-stone-300'" class="truncate">{{ f.name }}</span>
+                <span class="text-stone-600 text-[10px] shrink-0">{{ f.note }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-brand-500/25 bg-brand-500/[0.04] p-5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono font-bold text-brand-300 uppercase tracking-wider">3.0: written</span>
+            <span class="text-[10px] font-mono text-brand-300/70">2 files per model</span>
+          </div>
+          <ul class="space-y-1.5 font-mono text-[11.5px]">
+            @for (f of treeV3; track f.name) {
+              <li class="flex items-baseline justify-between gap-3">
+                <span class="text-white truncate">{{ f.name }}</span>
+                <span class="text-brand-300/70 text-[10px] shrink-0">{{ f.note }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+      <div class="lg:col-span-7 rounded-2xl border border-white/10 bg-space-900 overflow-hidden min-w-0">
+        <div class="px-5 py-3 border-b border-white/5 bg-space-850 flex items-center justify-between">
+          <span class="text-xs font-mono text-stone-400">PlanetControl.php + usage</span>
+          <span class="text-[10px] font-mono text-brand-300/80">that's the whole Control</span>
+        </div>
+        <pre class="code p-5 text-[12px] sm:text-[13px] leading-relaxed overflow-x-auto text-stone-300"><code [innerHTML]="controlHtml"></code></pre>
+      </div>
+    </div>
+
+    <!-- Feature grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      @for (item of whatsNew; track item.title) {
+        <article class="group p-6 rounded-2xl bg-space-900 border border-white/5 hover:border-brand-500/25 transition-colors flex flex-col">
+          <div class="w-11 h-11 rounded-xl bg-brand-500/10 text-brand-300 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <span class="material-icons">{{ item.icon }}</span>
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">{{ item.title }}</h3>
+          <p class="text-stone-400 text-sm leading-relaxed flex-1">{{ item.body }}</p>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            @for (tag of item.tags; track tag) {
+              <code class="text-[10px] px-1.5 py-0.5 rounded bg-white/5 text-stone-300 border border-white/5">{{ tag }}</code>
+            }
+          </div>
+        </article>
+      }
+    </div>
+
+    <!-- Rename + migration -->
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div class="rounded-2xl border border-white/5 bg-space-950/60 p-6 space-y-3">
+        <div class="flex items-center gap-2 text-white font-semibold"><span class="material-icons text-brand-300">sell</span> One name, no version number</div>
+        <div class="font-mono text-xs space-y-1.5">
+          <div class="flex flex-wrap items-center gap-2"><span class="text-stone-500 line-through">Magrathea2\</span><span class="material-icons !text-sm text-stone-600">arrow_forward</span><span class="text-brand-200">Magrathea\</span></div>
+          <div class="flex flex-wrap items-center gap-2"><span class="text-stone-500 line-through">platypustechnology/magratheaphp2</span><span class="material-icons !text-sm text-stone-600">arrow_forward</span><span class="text-brand-200">platypustechnology/magratheaphp</span></div>
+        </div>
+      </div>
+      <a [href]="links.migration" target="_blank" rel="noopener noreferrer" class="group rounded-2xl border border-white/5 bg-space-950/60 p-6 space-y-2 hover:border-brand-500/30 transition-colors">
+        <div class="flex items-center gap-2 text-white font-semibold"><span class="material-icons text-brand-300">upgrade</span> Upgrading from 2.3 or 2.4?</div>
+        <p class="text-sm text-stone-400 leading-relaxed">The migration guide is self-contained and written for a person or an AI agent. Each section says how to tell whether it applies (a <code class="text-stone-300">grep</code> or a command) and what to change.</p>
+        <span class="inline-flex items-center gap-1 text-sm font-mono text-brand-300 group-hover:text-brand-200">Read the 3.0 migration guide <span class="material-icons !text-sm">arrow_forward</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ HITCHHIKER -->
+<section class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-20">
+  <div class="relative rounded-3xl bg-gradient-to-r from-violet-950/40 via-space-850/90 to-brand-950/60 border border-brand-500/15 p-7 sm:p-10 overflow-hidden">
+    <div class="absolute -top-16 -right-16 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-16 -left-16 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       <div class="lg:col-span-8 space-y-4">
         <div class="flex flex-wrap items-center gap-3">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-bold uppercase tracking-wider">
-            <span class="material-icons text-sm">auto_awesome</span>
-            Galactic Curiosity
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-300 text-xs font-mono font-bold uppercase tracking-wider">
+            <span class="material-icons !text-sm">auto_awesome</span> Galactic curiosity
           </span>
-          <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-bold tracking-wider uppercase">
-            DON'T PANIC 🚀
-          </span>
+          <span class="inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/10 text-stone-200 text-xs font-mono font-bold tracking-wider uppercase">Don't panic</span>
         </div>
-
         <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-          Where does the name <span class="bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-cyan-300 to-blue-400">Magrathea</span> come from?
+          Where does the name <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-200 to-brand-500">Magrathea</span> come from?
         </h3>
-
-        <p class="text-gray-300 text-sm sm:text-base leading-relaxed font-light">
-          In Douglas Adams' classic sci-fi masterpiece <em class="text-white font-medium">The Hitchhiker's Guide to the Galaxy</em>, 
-          <strong class="text-cyan-300">Magrathea</strong> is an ancient, legendary planet whose engineers manufactured custom-made luxury planets for the galaxy’s wealthiest beings. 
-          Their most famous creation? <span class="text-white font-medium">Earth</span> — a supercomputer custom-designed to calculate the <em>Ultimate Question of Life, the Universe, and Everything</em>.
+        <p class="text-stone-300 text-sm sm:text-base leading-relaxed font-light">
+          In Douglas Adams' <em class="text-white font-medium">The Hitchhiker's Guide to the Galaxy</em>,
+          <strong class="text-brand-300">Magrathea</strong> is an ancient planet whose engineers built custom luxury planets for the galaxy's wealthiest beings.
+          Their most famous creation was <span class="text-white font-medium">Earth</span>, a supercomputer designed to calculate the <em>Ultimate Question of Life, the Universe, and Everything</em>.
         </p>
-
-        <p class="text-gray-400 text-xs sm:text-sm italic border-l-2 border-cyan-400/50 pl-4 py-1">
-          "Just as the Magratheans constructed bespoke planets for discerning galactic billionaires, MagratheaPHP gives you the tools to craft custom, ultra-fast PHP universes — without waiting 5,000,000 years for the order to complete."
+        <p class="text-stone-400 text-xs sm:text-sm italic border-l-2 border-brand-400/50 pl-4 py-1">
+          "The Magratheans built planets to order. MagratheaPHP gives you the tools to build yours, without waiting 5,000,000 years for the order to complete."
         </p>
       </div>
 
-      <!-- Right Column: Fun Stats / Easter Egg Box -->
-      <div class="lg:col-span-4 flex flex-col justify-center">
-        <div class="bg-black/50 border border-white/10 rounded-2xl p-6 space-y-4 font-mono text-xs">
-          <div class="flex items-center justify-between border-b border-white/5 pb-2 text-gray-400">
-            <span class="flex items-center gap-1.5 text-cyan-400 font-semibold">
-              <span class="material-icons text-sm">public</span> Planet Status
-            </span>
-            <span class="text-emerald-400 font-bold">Awakened</span>
+      <div class="lg:col-span-4">
+        <div class="bg-black/40 border border-white/10 rounded-2xl p-6 space-y-3 font-mono text-xs">
+          <div class="flex items-center justify-between border-b border-white/5 pb-2">
+            <span class="flex items-center gap-1.5 text-brand-300 font-semibold"><span class="material-icons !text-sm">public</span> Planet status</span>
+            <span class="text-emerald-400 font-bold">Version 3</span>
           </div>
-
           <div class="space-y-2">
-            <div class="flex justify-between items-center">
-              <span class="text-gray-500">Framework Creator:</span>
-              <a href="https://platypusweb.com.br" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-bold flex items-center gap-0.5">
-                Platypus Web <span class="material-icons text-[10px]">open_in_new</span>
-              </a>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-500">Primary Industry:</span>
-              <span class="text-white">Custom Planet Building</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-500">Ultimate Answer:</span>
-              <span class="text-amber-300 font-bold text-sm">42</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-500">Towel Essentiality:</span>
-              <span class="text-cyan-300 font-bold">100% (Always know where it is)</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-500">Sleep Duration:</span>
-              <span class="text-gray-300">5,000,000 years</span>
-            </div>
-          </div>
-
-          <div class="pt-2 border-t border-white/5 text-[11px] text-gray-400 text-center italic">
-            Remember: Always know where your towel is when deploying to production.
+            <div class="flex justify-between gap-3"><span class="text-stone-500">Built by</span><a [href]="links.platypus" target="_blank" rel="noopener noreferrer" class="text-brand-300 hover:underline font-bold">Platypus Web</a></div>
+            <div class="flex justify-between gap-3"><span class="text-stone-500">Industry</span><span class="text-white text-right">Custom planet building</span></div>
+            <div class="flex justify-between gap-3"><span class="text-stone-500">Ultimate answer</span><span class="text-brand-300 font-bold text-sm">42</span></div>
+            <div class="flex justify-between gap-3"><span class="text-stone-500">Generated code</span><span class="text-white">0 lines</span></div>
+            <div class="flex justify-between gap-3"><span class="text-stone-500">Towel</span><span class="text-stone-200 text-right">Always know where it is</span></div>
           </div>
         </div>
       </div>
@@ -272,392 +268,356 @@
   </div>
 </section>
 
-<!-- Core Features Section -->
-<section id="features" class="relative z-10 border-t border-white/5 bg-[#08090d]/60 py-24 scroll-mt-20">
-  <div class="max-w-7xl mx-auto px-6 sm:px-12">
+<!-- ============================================================ FEATURES -->
+<section id="features" class="border-t border-white/5 bg-space-900/60 py-24 scroll-mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
     <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-      <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest font-semibold font-bold">Engineered for perfection</span>
-      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">The Pillars of Magrathea</h2>
-      <p class="text-gray-400">Why architects choose Magrathea over heavy, bloated modern frameworks.</p>
+      <span class="text-brand-400 font-mono text-xs uppercase tracking-[0.2em] font-bold">What's in the box</span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">The pillars of Magrathea</h2>
+      <p class="text-stone-400">Everything a web application needs, with a short dependency list.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Feature 1 -->
-      <div class="group p-8 rounded-2xl bg-[#0c0d11] border border-white/5 hover:border-cyan-500/20 transition-all duration-300 relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 w-24 h-24 bg-cyan-500/5 rounded-full blur-xl group-hover:bg-cyan-500/10 transition-colors"></div>
-        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
-          <span class="material-icons">lan</span>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Planetary-Scale ORM</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Define entities and seamlessly link relational database tables to clean PHP objects. Save, query, and insert records with fluid methods.
-        </p>
-      </div>
-
-      <!-- Feature 2 -->
-      <div class="group p-8 rounded-2xl bg-[#0c0d11] border border-white/5 hover:border-purple-500/20 transition-all duration-300 relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 w-24 h-24 bg-purple-500/5 rounded-full blur-xl group-hover:bg-purple-500/10 transition-colors"></div>
-        <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
-          <span class="material-icons">dashboard_customize</span>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Visual Code Generator</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Harness the power of the built-in Magrathea Admin console to visually inspect tables, config values, and auto-generate model classes.
-        </p>
-      </div>
-
-      <!-- Feature 3 -->
-      <div class="group p-8 rounded-2xl bg-[#0c0d11] border border-white/5 hover:border-blue-500/20 transition-all duration-300 relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 w-24 h-24 bg-blue-500/5 rounded-full blur-xl group-hover:bg-blue-500/10 transition-colors"></div>
-        <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
-          <span class="material-icons">flash_on</span>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">0.72ms Per Request</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Independently benchmarked at 1,382 requests/second on a single vCPU — ahead of Slim, Symfony and Laravel serving identical JSON endpoints.
-        </p>
-      </div>
-
-      <!-- Feature 4 -->
-      <div class="group p-8 rounded-2xl bg-[#0c0d11] border border-white/5 hover:border-emerald-500/20 transition-all duration-300 relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 w-24 h-24 bg-emerald-500/5 rounded-full blur-xl group-hover:bg-emerald-500/10 transition-colors"></div>
-        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
-          <span class="material-icons">route</span>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Intuitive Smart Router</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Define beautiful static paths or capture named variables. Seamless routing seamlessly delegates calls to fast Controller actions.
-        </p>
-      </div>
-
-      <!-- Feature 5 -->
-      <div class="group p-8 rounded-2xl bg-[#0c0d11] border border-white/5 hover:border-amber-500/20 transition-all duration-300 relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 w-24 h-24 bg-amber-500/5 rounded-full blur-xl group-hover:bg-amber-500/10 transition-colors"></div>
-        <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 mb-6 group-hover:scale-110 transition-transform">
-          <span class="material-icons">mail_outline</span>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">SMTP Email Queue Engine</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Don't block web requests with long connection times. Magrathea contains an integrated mail queue manager for database logged emails.
-        </p>
-      </div>
-
-      <!-- Feature 6 -->
-      <div class="group p-8 rounded-2xl bg-[#0c0d11] border border-white/5 hover:border-pink-500/20 transition-all duration-300 relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 w-24 h-24 bg-pink-500/5 rounded-full blur-xl group-hover:bg-pink-500/10 transition-colors"></div>
-        <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition-transform">
-          <span class="material-icons">settings_suggest</span>
-        </div>
-        <h3 class="text-xl font-bold text-white mb-3">Environment Configs</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">
-          Seamlessly swap database, logging, and performance behaviors across environments (`development`, `staging`, `production`) using standard `.ini` files.
-        </p>
-      </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <article class="p-7 rounded-2xl bg-space-950/70 border border-white/5 hover:border-brand-500/25 transition-colors">
+        <span class="material-icons text-brand-300 mb-4">hub</span>
+        <h3 class="text-lg font-bold text-white mb-2">An ORM you can read</h3>
+        <p class="text-stone-400 text-sm leading-relaxed">Models are a handful of properties and Controls are one line. You get <code class="text-stone-300">GetAll</code>, <code class="text-stone-300">GetWhere</code>, a fluent <code class="text-stone-300">Query</code> builder, pagination, transactions and streaming queries, plus strict types that return ints as ints.</p>
+      </article>
+      <article class="p-7 rounded-2xl bg-space-950/70 border border-white/5 hover:border-brand-500/25 transition-colors">
+        <span class="material-icons text-brand-300 mb-4">api</span>
+        <h3 class="text-lg font-bold text-white mb-2">REST API with JWT</h3>
+        <p class="text-stone-400 text-sm leading-relaxed">Routes with <code class="text-stone-300">:name</code> parameters, five CRUD routes from one <code class="text-stone-300">Crud()</code> call, CORS from a list or a file, JWT login and refresh, and response caching.</p>
+      </article>
+      <article class="p-7 rounded-2xl bg-space-950/70 border border-white/5 hover:border-brand-500/25 transition-colors">
+        <span class="material-icons text-brand-300 mb-4">dashboard</span>
+        <h3 class="text-lg font-bold text-white mb-2">An admin panel</h3>
+        <p class="text-stone-400 text-sm leading-relaxed">Users, app settings, cache, CORS origins, logs, an API explorer, CRUD pages for your own models, and a full Database section, all behind CSRF-protected forms.</p>
+      </article>
+      <article class="p-7 rounded-2xl bg-space-950/70 border border-white/5 hover:border-brand-500/25 transition-colors">
+        <span class="material-icons text-brand-300 mb-4">terminal</span>
+        <h3 class="text-lg font-bold text-white mb-2">A CLI for people and agents</h3>
+        <p class="text-stone-400 text-sm leading-relaxed"><code class="text-stone-300">vendor/bin/magrathea</code> runs checks, describes the schema, runs queries, dumps and imports, and manages admin users. It prints text or JSON, with clear exit codes.</p>
+      </article>
+      <article class="p-7 rounded-2xl bg-space-950/70 border border-white/5 hover:border-brand-500/25 transition-colors">
+        <span class="material-icons text-brand-300 mb-4">tune</span>
+        <h3 class="text-lg font-bold text-white mb-2">Environments in one INI file</h3>
+        <p class="text-stone-400 text-sm leading-relaxed"><code class="text-stone-300">[dev]</code> and <code class="text-stone-300">[production]</code> live side by side, secrets come from <code class="text-stone-300">$=ENV_VARS</code>, and <code class="text-stone-300">Dev()</code>, <code class="text-stone-300">Debug()</code> and <code class="text-stone-300">Prod()</code> decide what gets shown and what gets logged.</p>
+      </article>
+      <article class="p-7 rounded-2xl bg-space-950/70 border border-white/5 hover:border-brand-500/25 transition-colors">
+        <span class="material-icons text-brand-300 mb-4">inventory_2</span>
+        <h3 class="text-lg font-bold text-white mb-2">Batteries, not bloat</h3>
+        <p class="text-stone-400 text-sm leading-relaxed">SMTP mail, a logger, a debugger, a file cache, CSS/SCSS and JS compressors and UUID v7, built on a handful of trusted packages: PHPMailer, php-jwt and scssphp.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- Visual Admin Live Interactive Mockup Section -->
-<section id="admin" class="relative z-10 py-24 scroll-mt-20">
-  <div class="max-w-7xl mx-auto px-6 sm:px-12">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-4 space-y-6">
-        <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest font-semibold font-bold">Zero-code database operations</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Visual Power of Magrathea Admin</h2>
-        <p class="text-gray-400 leading-relaxed font-light">
-          One of Magrathea's greatest attributes is its native, responsive administration console. Skip typing complex migration scripts. Update environments, map database tables to models, run SQL, and watch code output instantly.
-        </p>
-        <div class="space-y-4">
-          <div class="flex gap-3 items-start">
-            <span class="material-icons text-cyan-400 mt-0.5">check_circle</span>
-            <span class="text-sm text-gray-300">Point-and-click ORM database mapping</span>
-          </div>
-          <div class="flex gap-3 items-start">
-            <span class="material-icons text-cyan-400 mt-0.5">check_circle</span>
-            <span class="text-sm text-gray-300">Automated table structure and class generation</span>
-          </div>
-          <div class="flex gap-3 items-start">
-            <span class="material-icons text-cyan-400 mt-0.5">check_circle</span>
-            <span class="text-sm text-gray-300">Fast config edits with hot environment reload</span>
-          </div>
+<!-- ============================================================ AGENTS -->
+<section id="agents" class="py-24 scroll-mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <div class="lg:col-span-5 space-y-6">
+      <span class="text-brand-400 font-mono text-xs uppercase tracking-[0.2em] font-bold">Made for the age of agents</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Your agent writes the code. Magrathea checks it.</h2>
+      <p class="text-stone-400 leading-relaxed">
+        Generated code is code nobody reads. In 3.0, an agent writes small classes from a precise manual
+        and then checks its work against the real database, without ever opening a browser.
+      </p>
+      <ul class="space-y-4">
+        <li class="flex gap-3"><span class="material-icons text-brand-300 mt-0.5">menu_book</span><span class="text-sm text-stone-300"><strong class="text-white">The manual ships with the package.</strong> <code class="text-stone-200">skills.MD</code> (the cookbook) and <code class="text-stone-200">docs/mds/</code> (the reference) land in <code class="text-stone-200">vendor/</code>, kept in sync with the source.</span></li>
+        <li class="flex gap-3"><span class="material-icons text-brand-300 mt-0.5">data_object</span><span class="text-sm text-stone-300"><strong class="text-white">One JSON document per command.</strong> With <code class="text-stone-200">--json</code>, stdout is always a single document, errors included.</span></li>
+        <li class="flex gap-3"><span class="material-icons text-brand-300 mt-0.5">front_hand</span><span class="text-sm text-stone-300"><strong class="text-white">No prompts: the flag is the consent.</strong> Writes refuse to run without <code class="text-stone-200">--write</code> or <code class="text-stone-200">--yes</code>, and nothing connects before that check.</span></li>
+        <li class="flex gap-3"><span class="material-icons text-brand-300 mt-0.5">pin</span><span class="text-sm text-stone-300"><strong class="text-white">Exit codes you can branch on:</strong> 0 ok, 1 an ERROR finding, 2 a usage error.</span></li>
+      </ul>
+
+      <div class="rounded-xl border border-white/10 bg-space-900 overflow-hidden">
+        <div class="px-4 py-2.5 border-b border-white/5 bg-space-850 flex items-center justify-between">
+          <span class="text-xs font-mono text-stone-400">AGENTS.md: drop it in your project</span>
+          <button (click)="copy('agents', agentsMd)" class="text-stone-500 hover:text-brand-300 flex items-center gap-1 text-xs transition-colors cursor-pointer">
+            <span class="material-icons !text-sm">{{ copied() === 'agents' ? 'check' : 'content_copy' }}</span>{{ copied() === 'agents' ? 'Copied' : 'Copy' }}
+          </button>
         </div>
-        <div class="pt-2">
-          <a href="https://www.platypusweb.com.br/magratheaphp2/docs/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-cyan-400 font-mono text-sm hover:text-cyan-300 hover:underline">
-            Read Admin Console Guide <span class="material-icons text-sm">arrow_forward</span>
-          </a>
-        </div>
+        <pre class="code p-4 text-[11px] leading-relaxed whitespace-pre-wrap text-stone-300"><code [innerHTML]="agentsMdHtml"></code></pre>
       </div>
+    </div>
 
-      <!-- Interactive Mockup Screen -->
-      <div class="lg:col-span-8 relative">
-        <div class="absolute -inset-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-2xl blur-xl opacity-60 -z-10"></div>
-        
-        <div class="w-full bg-[#0a0b0f] border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row h-[420px] md:h-[460px]">
-          <!-- Mockup Sidebar -->
-          <div class="w-full md:w-48 bg-[#101217] border-b md:border-b-0 md:border-r border-white/5 p-4 flex md:flex-col gap-1 overflow-x-auto md:overflow-x-visible shrink-0">
-            <div class="text-gray-500 text-[10px] uppercase font-mono tracking-widest px-2 pb-2 hidden md:block">ADMIN PANEL</div>
-            <button (click)="switchAdminTab('generator')" [class]="adminTab() === 'generator' ? 'w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-cyan-400 bg-cyan-400/5 flex items-center gap-2 border border-cyan-500/20 shrink-0' : 'w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-gray-400 hover:text-white flex items-center gap-2 transition-all shrink-0'">
-              <span class="material-icons text-base">construction</span>
-              <span>Model Generator</span>
-            </button>
-            <button (click)="switchAdminTab('terminal')" [class]="adminTab() === 'terminal' ? 'w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-cyan-400 bg-cyan-400/5 flex items-center gap-2 border border-cyan-500/20 shrink-0' : 'w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-gray-400 hover:text-white flex items-center gap-2 transition-all shrink-0'">
-              <span class="material-icons text-base">terminal</span>
-              <span>SQL Terminal</span>
-            </button>
-            <button (click)="switchAdminTab('logs')" [class]="adminTab() === 'logs' ? 'w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-cyan-400 bg-cyan-400/5 flex items-center gap-2 border border-cyan-500/20 shrink-0' : 'w-full text-left px-3 py-2 rounded-lg text-xs font-medium text-gray-400 hover:text-white flex items-center gap-2 transition-all shrink-0'">
-              <span class="material-icons text-base">receipt_long</span>
-              <span>System Logs</span>
-            </button>
+    <div class="lg:col-span-7 relative min-w-0">
+      <div class="absolute -inset-2 bg-gradient-to-tr from-violet-600/20 via-transparent to-brand-500/20 rounded-3xl blur-2xl opacity-70 -z-10"></div>
+      <div class="rounded-2xl border border-white/10 bg-[#0b0a08] shadow-2xl overflow-hidden">
+        <div class="flex items-center gap-4 px-4 py-3 bg-space-850 border-b border-white/5">
+          <div class="flex items-center gap-1.5 shrink-0" aria-hidden="true">
+            <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+            <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+            <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
           </div>
+          <div class="flex gap-1 overflow-x-auto" role="tablist">
+            @for (t of agentTerminal; track t.id) {
+              <button role="tab" [attr.aria-selected]="agentTab() === t.id" (click)="agentTab.set(t.id)"
+                class="px-3 py-1 rounded-md text-xs font-mono whitespace-nowrap transition-colors cursor-pointer border"
+                [class]="agentTab() === t.id ? 'text-brand-300 bg-white/5 border-brand-500/25' : 'text-stone-400 hover:text-white border-transparent'">{{ t.label }}</button>
+            }
+          </div>
+        </div>
+        <pre class="code p-5 text-[11px] sm:text-[12px] leading-relaxed overflow-auto h-[520px]"><code [innerHTML]="agentTerm().html"></code></pre>
+      </div>
+      <p class="mt-3 text-xs text-stone-500 font-mono">
+        Real command names, flags and message formats. <a [href]="links.cli" target="_blank" rel="noopener noreferrer" class="text-brand-300 hover:underline">CLI reference →</a>
+      </p>
+    </div>
+  </div>
+</section>
 
-          <!-- Mockup Workspace Content -->
-          <div class="flex-1 p-6 overflow-y-auto bg-[#0a0b0f]">
-            
-            <!-- Tab: Object Model Generator -->
-            @if (adminTab() === 'generator') {
-              <div class="space-y-4">
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                  <div>
-                    <h4 class="text-sm font-bold text-white font-mono">Table to Object Generator</h4>
-                    <p class="text-[10px] text-gray-500 mt-0.5">Map MySQL / PostgreSQL tables to PHP objects</p>
+<!-- ============================================================ ADMIN -->
+<section id="admin" class="border-t border-white/5 bg-space-900/60 py-24 scroll-mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-4 space-y-6">
+      <span class="text-brand-400 font-mono text-xs uppercase tracking-[0.2em] font-bold">For people, too</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">The admin's new Database section</h2>
+      <p class="text-stone-400 leading-relaxed">
+        The checks the CLI runs are also available in the browser. Explore tables and the models that map them, run queries safely,
+        build a <code class="text-stone-200">Query</code> without writing code, and fix what the checks find.
+      </p>
+      <ul class="space-y-3">
+        <li class="flex gap-3 items-start"><span class="material-icons text-brand-300 !text-xl">check_circle</span><span class="text-sm text-stone-300">SQL that isn't read-only waits for your confirmation</span></li>
+        <li class="flex gap-3 items-start"><span class="material-icons text-brand-300 !text-xl">check_circle</span><span class="text-sm text-stone-300">The Query editor shows the PHP chain and the SQL it builds</span></li>
+        <li class="flex gap-3 items-start"><span class="material-icons text-brand-300 !text-xl">check_circle</span><span class="text-sm text-stone-300">Every check comes with its fix, down to the <code class="text-stone-200">ALTER TABLE</code></span></li>
+        <li class="flex gap-3 items-start"><span class="material-icons text-brand-300 !text-xl">check_circle</span><span class="text-sm text-stone-300">Dumps run through <code class="text-stone-200">mysqldump</code>, or in pure PHP when it isn't available</span></li>
+      </ul>
+      <a [href]="links.adminDatabase" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-brand-300 font-mono text-sm hover:text-brand-200 hover:underline">
+        Admin Database guide <span class="material-icons !text-sm">arrow_forward</span>
+      </a>
+    </div>
+
+    <!-- Mockup -->
+    <div class="lg:col-span-8 relative min-w-0">
+      <div class="absolute -inset-2 bg-gradient-to-r from-brand-500/15 to-violet-500/15 rounded-3xl blur-xl opacity-70 -z-10"></div>
+      <div class="w-full bg-space-950 border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row md:h-[500px]">
+        <!-- Sidebar -->
+        <nav class="w-full md:w-48 bg-space-850 border-b md:border-b-0 md:border-r border-white/5 p-3 flex md:flex-col gap-1 overflow-x-auto shrink-0" aria-label="Admin mockup">
+          <div class="hidden md:flex items-center gap-2 px-2 pb-3 mb-1 border-b border-white/5">
+            <img src="assets/logo-monocolor.png" alt="" class="h-5 w-auto" />
+            <span class="text-[11px] font-bold text-white tracking-wide">Admin</span>
+          </div>
+          <div class="hidden md:block text-stone-500 text-[10px] uppercase font-mono tracking-widest px-2 pt-1 pb-1">Database</div>
+          @for (m of adminMenu; track m.id) {
+            <button (click)="adminTab.set(m.id)"
+              class="text-left px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-2 border transition-all shrink-0 cursor-pointer"
+              [class]="adminTab() === m.id ? 'text-brand-300 bg-brand-400/[0.07] border-brand-500/25' : 'text-stone-400 hover:text-white border-transparent'">
+              <span class="material-icons !text-base">{{ m.icon }}</span>{{ m.label }}
+            </button>
+          }
+          <div class="hidden md:block mt-auto px-3 py-2 text-[10px] text-stone-600 font-mono">Dumps · Connection</div>
+        </nav>
+
+        <!-- Workspace -->
+        <div class="flex-1 p-5 overflow-y-auto min-w-0 h-[460px] md:h-auto">
+
+          @if (adminTab() === 'explorer') {
+            <div class="space-y-4">
+              <div class="pb-2 border-b border-white/5">
+                <h4 class="text-sm font-bold text-white font-mono">Explorer</h4>
+                <p class="text-[11px] text-stone-500 mt-0.5">Every table and view, the models that map it, and its status</p>
+              </div>
+              <div class="overflow-x-auto rounded-lg border border-white/5">
+                <table class="w-full text-left text-[11px] font-mono text-stone-400">
+                  <thead class="bg-white/5 text-stone-200">
+                    <tr><th class="p-2">Table</th><th class="p-2">Rows</th><th class="p-2">Engine</th><th class="p-2">Model</th><th class="p-2">Status</th></tr>
+                  </thead>
+                  <tbody>
+                    @for (t of explorerTables; track t.name) {
+                      <tr class="border-t border-white/5 hover:bg-white/[0.03]">
+                        <td class="p-2 text-brand-200">{{ t.name }}</td>
+                        <td class="p-2">{{ t.rows }}</td>
+                        <td class="p-2">{{ t.engine }}</td>
+                        <td class="p-2 text-stone-300 whitespace-nowrap">{{ t.model }}</td>
+                        <td class="p-2"><span class="inline-flex items-center gap-1.5"><span class="w-2 h-2 rounded-full" [class]="levelDot(t.status)"></span>{{ t.status }}</span></td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-[11px] text-stone-500">Read-only. Open a table to see its columns, indexes, <code class="text-stone-300">SHOW CREATE TABLE</code>, a preview of its rows and the findings for its models.</p>
+            </div>
+          }
+
+          @if (adminTab() === 'queries') {
+            <div class="space-y-4">
+              <div class="pb-2 border-b border-white/5">
+                <h4 class="text-sm font-bold text-white font-mono">Queries</h4>
+                <p class="text-[11px] text-stone-500 mt-0.5">Read-only SQL runs right away. Anything else asks first.</p>
+              </div>
+              <label for="query-preset" class="block text-[10px] text-stone-400 font-mono uppercase tracking-wider">SQL</label>
+              <select id="query-preset" (change)="setQueryPreset($event)" class="w-full bg-space-850 border border-white/10 p-2.5 rounded-lg text-xs text-white focus:outline-none focus:border-brand-400 font-mono">
+                @for (p of queryPresets; track p.id) {
+                  <option [value]="p.id" [selected]="queryPreset() === p.id">{{ p.sql }}</option>
+                }
+              </select>
+              <button (click)="runQuery()" class="px-4 py-2 bg-brand-400 hover:bg-brand-300 text-space-950 font-semibold text-xs rounded-lg transition-all flex items-center gap-1.5 cursor-pointer">
+                <span class="material-icons !text-sm">play_arrow</span>{{ queryState() === 'confirm' ? 'Run it anyway' : 'Run' }}
+              </button>
+
+              <div class="font-mono text-[11px] rounded-lg border border-white/5 p-3 bg-black/40 min-h-[120px]">
+                @if (queryState() === 'idle') {
+                  <span class="text-stone-500">Pick some SQL and run it.</span>
+                } @else if (queryState() === 'confirm') {
+                  <div class="rounded border border-amber-500/30 bg-amber-500/5 p-3 text-amber-100 space-y-1">
+                    <div class="font-bold flex items-center gap-1.5"><span class="material-icons !text-sm text-amber-400">warning</span>This SQL isn't read-only.</div>
+                    <div class="text-amber-100/80">Nothing has run yet. Confirm to execute it.</div>
                   </div>
-                  <span class="text-[9px] bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded font-mono">v2.0 Beta</span>
-                </div>
-
-                <div class="space-y-2.5">
-                  <p class="text-xs text-gray-400">Select which tables to map into MagratheaModels:</p>
-                  <div class="space-y-1.5 font-mono text-xs max-h-[140px] overflow-y-auto border border-white/5 p-2 rounded bg-black/30">
-                    <label class="flex items-center gap-2.5 px-2 py-1 hover:bg-white/5 rounded cursor-pointer text-gray-300">
-                      <input type="checkbox" checked class="accent-cyan-400 rounded">
-                      <span>planets <span class="text-gray-500 text-[10px]">(relational)</span></span>
-                    </label>
-                    <label class="flex items-center gap-2.5 px-2 py-1 hover:bg-white/5 rounded cursor-pointer text-gray-300">
-                      <input type="checkbox" checked class="accent-cyan-400 rounded">
-                      <span>users <span class="text-gray-500 text-[10px]">(auth map)</span></span>
-                    </label>
-                    <label class="flex items-center gap-2.5 px-2 py-1 hover:bg-white/5 rounded cursor-pointer text-gray-300">
-                      <input type="checkbox" class="accent-cyan-400 rounded">
-                      <span>system_logs <span class="text-gray-500 text-[10px]">(generic)</span></span>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="flex gap-3">
-                  <button (click)="simulateGenerate()" class="px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-xs rounded-lg transition-all flex items-center gap-1.5 cursor-pointer">
-                    <span class="material-icons text-sm">auto_awesome</span>
-                    <span>Generate Objects</span>
-                  </button>
-                </div>
-
-                <!-- Output Container for model creation -->
-                @if (showModelGenerated()) {
-                  <div class="p-3 rounded border border-cyan-500/20 bg-cyan-500/5 font-mono text-[10px] text-cyan-300 space-y-1.5">
-                    <div class="flex items-center gap-1.5 text-white font-bold text-[11px]">
-                      <span class="material-icons text-emerald-400 text-sm">check_circle</span>
-                      <span>Models Generated successfully!</span>
-                    </div>
-                    <div>Created file: <span class="text-white">features/Planet/Base/PlanetBase.php</span></div>
-                    <div>Created file: <span class="text-white">features/Planet/Planet.php</span></div>
-                    <div>Created file: <span class="text-white">features/User/Base/UserBase.php</span></div>
-                    <div>Created file: <span class="text-white">features/User/User.php</span></div>
-                    <div class="text-gray-500">Base classes can be regenerated from the admin anytime.</div>
-                  </div>
+                } @else if (queryPreset() === 'select') {
+                  <div class="text-emerald-400 mb-2">3 rows</div>
+                  <table class="w-full text-left text-stone-400">
+                    <thead class="text-stone-200"><tr><th class="py-1">id</th><th>name</th><th>diameter</th></tr></thead>
+                    <tbody>
+                      <tr class="border-t border-white/5"><td class="py-1">5</td><td class="text-brand-200">Jupiter</td><td>139820</td></tr>
+                      <tr class="border-t border-white/5"><td class="py-1">6</td><td class="text-brand-200">Saturn</td><td>116460</td></tr>
+                      <tr class="border-t border-white/5"><td class="py-1">7</td><td class="text-brand-200">Uranus</td><td>50724</td></tr>
+                    </tbody>
+                  </table>
+                } @else if (queryPreset() === 'count') {
+                  <div class="text-emerald-400 mb-2">1 row</div>
+                  <div class="text-stone-300">total: <span class="text-white font-bold">8,142,000,000</span></div>
+                } @else {
+                  <div class="text-emerald-400">Affected rows: 1</div>
+                  <div class="text-stone-500 mt-1">Sorry, Pluto.</div>
                 }
               </div>
-            }
+            </div>
+          }
 
-            <!-- Tab: SQL Terminal -->
-            @if (adminTab() === 'terminal') {
-              <div class="space-y-4">
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                  <div>
-                    <h4 class="text-sm font-bold text-white font-mono">SQL Query Analyzer</h4>
-                    <p class="text-[10px] text-gray-500 mt-0.5">Test database mappings and queries instantly</p>
-                  </div>
-                  <span class="text-[9px] bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded font-mono">Active Connection</span>
+          @if (adminTab() === 'editor') {
+            <div class="space-y-4">
+              <div class="pb-2 border-b border-white/5">
+                <h4 class="text-sm font-bold text-white font-mono">Query editor</h4>
+                <p class="text-[11px] text-stone-500 mt-0.5">Build a real <code class="text-stone-300">Query</code> from a form and get its PHP and its SQL</p>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-mono">
+                <div class="rounded-lg border border-white/10 bg-space-850 p-2"><div class="text-stone-500 text-[9px] uppercase">Type</div><div class="text-white">select</div></div>
+                <div class="rounded-lg border border-white/10 bg-space-850 p-2"><div class="text-stone-500 text-[9px] uppercase">Table</div><div class="text-white">planets</div></div>
+                <div class="rounded-lg border border-white/10 bg-space-850 p-2 col-span-2"><div class="text-stone-500 text-[9px] uppercase">Fields</div><div class="text-white">id, name, diameter</div></div>
+                <div class="rounded-lg border border-white/10 bg-space-850 p-2 col-span-2"><div class="text-stone-500 text-[9px] uppercase">Where</div><div class="text-white">habitable = 1 · diameter &gt; 10000</div></div>
+                <div class="rounded-lg border border-white/10 bg-space-850 p-2"><div class="text-stone-500 text-[9px] uppercase">Order</div><div class="text-white">diameter DESC</div></div>
+                <div class="rounded-lg border border-white/10 bg-space-850 p-2"><div class="text-stone-500 text-[9px] uppercase">Limit</div><div class="text-white">10</div></div>
+              </div>
+              <button (click)="queryEditorBuilt.set(true)" class="px-4 py-2 bg-brand-400 hover:bg-brand-300 text-space-950 font-semibold text-xs rounded-lg transition-all flex items-center gap-1.5 cursor-pointer">
+                <span class="material-icons !text-sm">build</span>Build
+              </button>
+              @if (queryEditorBuilt()) {
+                <div class="space-y-2">
+                  <div class="text-[10px] font-mono uppercase tracking-wider text-stone-500">PHP</div>
+                  <pre class="code rounded-lg border border-white/5 bg-black/40 p-3 text-[11px] leading-relaxed overflow-x-auto text-stone-300"><code [innerHTML]="queryEditorPhp"></code></pre>
+                  <div class="text-[10px] font-mono uppercase tracking-wider text-stone-500">SQL</div>
+                  <pre class="code rounded-lg border border-white/5 bg-black/40 p-3 text-[11px] leading-relaxed whitespace-pre-wrap text-stone-300"><code [innerHTML]="queryEditorSql"></code></pre>
                 </div>
+              }
+            </div>
+          }
 
-                <div class="space-y-3">
-                  <div class="flex flex-col gap-1.5">
-                    <label for="query-select-box" class="text-[10px] text-gray-400 font-mono">SELECT QUERY PRESET:</label>
-                    <select id="query-select-box" (change)="updateQueryPreset($event)" class="bg-[#12141a] border border-white/10 p-2 rounded text-xs text-white focus:outline-none focus:border-cyan-500 font-mono">
-                      <option value="select">SELECT * FROM planets ORDER BY id DESC LIMIT 2;</option>
-                      <option value="count">SELECT COUNT(*) as total_users FROM users;</option>
-                      <option value="error">SELECT * FROM non_existent_table;</option>
-                    </select>
-                  </div>
-
-                  <button (click)="simulateQueryRun()" class="px-4 py-2 bg-purple-500 hover:bg-purple-400 text-white font-semibold text-xs rounded-lg transition-all flex items-center gap-1.5 cursor-pointer">
-                    <span class="material-icons text-sm">play_arrow</span>
-                    <span>Execute Query</span>
-                  </button>
+          @if (adminTab() === 'checks') {
+            <div class="space-y-4">
+              <div class="pb-2 border-b border-white/5 flex items-center justify-between gap-3">
+                <div>
+                  <h4 class="text-sm font-bold text-white font-mono">Checks</h4>
+                  <p class="text-[11px] text-stone-500 mt-0.5">Configuration, folders, database, timezone and schema</p>
                 </div>
-
-                <div class="font-mono text-[10px] rounded border border-white/5 p-3 bg-black/40 min-h-[80px] flex flex-col justify-center">
-                  @if (!sqlExecuted()) {
-                    <span class="text-gray-500 text-center">Click "Execute Query" to analyze output...</span>
-                  } @else if (selectedQueryPreset() === 'select') {
-                    <div>
-                      <div class="text-green-400">[Query executed in 0.08ms]</div>
-                      <div class="text-gray-300 mt-1 font-bold">planets table output (2 records):</div>
-                      <table class="w-full mt-2 border border-white/5 text-left text-[9px] text-gray-400">
-                        <thead class="bg-white/5 text-white font-mono">
-                          <tr>
-                            <th class="p-1 border-b border-white/5">id</th>
-                            <th class="p-1 border-b border-white/5">name</th>
-                            <th class="p-1 border-b border-white/5">diameter</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="p-1 border-b border-white/5">1</td>
-                            <td class="p-1 border-b border-white/5 text-cyan-300">Earth</td>
-                            <td class="p-1 border-b border-white/5">12,742 km</td>
-                          </tr>
-                          <tr>
-                            <td class="p-1">2</td>
-                            <td class="p-1 text-cyan-300">Jupiter</td>
-                            <td class="p-1">139,820 km</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  } @else if (selectedQueryPreset() === 'count') {
-                    <div>
-                      <div class="text-green-400">[Query executed in 0.04ms]</div>
-                      <div class="text-gray-300 mt-1 font-semibold">
-                        Result: <span class="text-white font-bold font-mono">total_users: 14,208</span>
-                      </div>
-                    </div>
-                  } @else if (selectedQueryPreset() === 'error') {
-                    <div>
-                      <div class="text-red-400 font-bold">[MySQL Error 1146]</div>
-                      <div class="text-red-300 mt-0.5">Table 'magrathea_db.non_existent_table' doesn't exist</div>
+                <span class="text-[10px] font-mono px-2 py-1 rounded bg-red-500/10 text-red-300 border border-red-500/20 shrink-0">1 error · 2 warnings</span>
+              </div>
+              @for (g of checkGroups; track g.title) {
+                <div class="space-y-1.5">
+                  <div class="flex items-center gap-2 text-xs font-semibold text-stone-200">
+                    <span class="w-2 h-2 rounded-full" [class]="levelDot(g.level)"></span>{{ g.title }}
+                  </div>
+                  @for (f of g.findings; track f.message) {
+                    <div class="rounded-lg border px-3 py-2 text-[11px] leading-relaxed" [class]="levelBox(f.level)">
+                      <span [innerHTML]="f.html"></span>
+                      @if (f.fix) {
+                        <pre class="code mt-2 p-2 rounded bg-black/50 text-[10.5px] text-brand-200 whitespace-pre-wrap break-all">{{ f.fix }}</pre>
+                      }
                     </div>
                   }
                 </div>
-              </div>
-            }
-
-            <!-- Tab: System Logs -->
-            @if (adminTab() === 'logs') {
-              <div class="space-y-4">
-                <div class="flex justify-between items-center pb-2 border-b border-white/5">
-                  <div>
-                    <h4 class="text-sm font-bold text-white font-mono">Magrathea System Logs</h4>
-                    <p class="text-[10px] text-gray-500 mt-0.5">Real-time developer log tracking</p>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping"></span>
-                    <span class="text-[9px] text-gray-500 font-mono">STREAMING</span>
-                  </div>
-                </div>
-
-                <div class="font-mono text-[10px] rounded border border-white/5 p-4 bg-black/50 space-y-2 h-[200px] overflow-y-auto">
-                  <div class="text-gray-500">[2026-07-20 09:42:01] Magrathea Config parsed successfully. Env: [development]</div>
-                  <div class="text-cyan-400">[2026-07-20 09:42:01] SQL Connection initialized to localhost:3306</div>
-                  <div class="text-gray-500">[2026-07-20 09:42:02] Autoloader mapped 14 active classes correctly.</div>
-                  <div class="text-purple-400">[2026-07-20 09:42:05] Api route matched: GET planets/:id -&gt; PlanetApiControl::Read</div>
-                  <div class="text-gray-500">[2026-07-20 09:42:05] JSON response served in 0.22ms</div>
-                  <div class="text-amber-400">[2026-07-20 09:42:12] Mail Queue Daemon started on background process.</div>
-                </div>
-              </div>
-            }
-
-          </div>
+              }
+            </div>
+          }
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Framework Benchmarks Section -->
-<section id="benchmarks" class="relative z-10 border-t border-white/5 bg-[#08090d]/60 py-24 scroll-mt-20">
-  <div class="max-w-7xl mx-auto px-6 sm:px-12">
+<!-- ============================================================ BENCHMARKS -->
+<section id="benchmarks" class="py-24 scroll-mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
     <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-      <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest font-semibold font-bold">Real-world performance</span>
-      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">Lightyears Ahead in Speed</h2>
-      <p class="text-gray-400">Real numbers from a benchmark against Slim, Symfony and Laravel — measured July 2026.</p>
+      <span class="text-brand-400 font-mono text-xs uppercase tracking-[0.2em] font-bold">Measured performance</span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">Light-years ahead in speed</h2>
+      <p class="text-stone-400">MagratheaPHP 3 against Slim, Symfony and Laravel, serving identical JSON endpoints. Measured {{ benchmarkDate }}.</p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <!-- Interactive slider selection -->
-      <div class="space-y-8">
-        <div class="space-y-4">
-          <h3 class="text-2xl font-bold text-white">Compare Metrics</h3>
-          <p class="text-gray-400 text-sm leading-relaxed">
-            Serving identical JSON endpoints under identical constraints, Magrathea delivered <span class="text-white font-semibold">1,382 requests/second</span> — 40% ahead of Slim, 3.5&times; Symfony and 8&times; Laravel — at <span class="text-white font-semibold">0.72 ms of CPU time</span> and <span class="text-white font-semibold">0.3 MB of peak memory</span> per request.
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+      <div class="space-y-6">
+        <div class="space-y-3">
+          <h3 class="text-2xl font-bold text-white">Compare the metrics</h3>
+          <p class="text-stone-400 text-sm leading-relaxed">
+            With the same limits for every framework, Magrathea served <span class="text-white font-semibold">{{ stats.rps }} requests/second</span>
+            at <span class="text-white font-semibold">{{ stats.cpu }} ms of CPU</span> and <span class="text-white font-semibold">{{ stats.mem }} MB of peak memory</span> per request:
+            @for (v of stats.vs; track v.name; let last = $last) {
+              {{ ratioText(v.ratio) }} {{ v.name }}{{ last ? '.' : ',' }}
+            }
           </p>
         </div>
 
-        <!-- AI-run benchmark attribution -->
-        <div class="p-5 rounded-xl border border-cyan-500/20 bg-cyan-500/5 space-y-2">
+        <div class="p-5 rounded-xl border border-brand-500/20 bg-brand-500/[0.05] space-y-2">
           <div class="flex gap-1.5 items-center text-xs font-semibold text-white">
-            <span class="material-icons text-cyan-400 text-sm">auto_awesome</span>
-            <span>Independent, AI-run benchmark</span>
+            <span class="material-icons text-brand-300 !text-sm">auto_awesome</span>An AI-run benchmark
           </div>
-          <p class="text-xs text-gray-400 leading-relaxed">
-            This benchmark was designed, built and executed autonomously by <span class="text-cyan-300 font-semibold">Claude</span> (Anthropic's AI assistant) in an isolated, impartial environment — no manual tuning favoring any framework.
+          <p class="text-xs text-stone-400 leading-relaxed">
+            <span class="text-brand-200 font-semibold">Claude</span> (Anthropic's AI assistant) designed, built and ran this benchmark in isolated containers, with no manual tuning that favors any framework. The harness is public, so you can run it yourself.
           </p>
-          <a href="benchmark/" class="inline-flex items-center gap-1 text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors">
-            <span class="material-icons text-sm">folder_open</span>
-            Browse the benchmark harness
+          <a href="benchmark/" class="inline-flex items-center gap-1 text-xs font-mono text-brand-300 hover:text-brand-200 transition-colors">
+            <span class="material-icons !text-sm">folder_open</span>Browse the benchmark harness
           </a>
         </div>
 
-        <!-- Informational card detailing the method -->
         <div class="p-5 rounded-xl border border-white/5 bg-black/20 space-y-2">
           <div class="flex gap-1.5 items-center text-xs font-semibold text-white">
-            <span class="material-icons text-cyan-400 text-sm">info</span>
-            <span>Benchmark method:</span>
+            <span class="material-icons text-brand-300 !text-sm">info</span>Method
           </div>
-          <p class="text-xs text-gray-500 leading-relaxed font-mono">
-            PHP 8.3 + Apache (mod_php), OPcache enabled, one Docker container per framework capped at 1 vCPU / 512MB RAM. Laravel and Symfony in production mode with cached config/routes. Load: wrk, 2 threads, 50 connections, 30s runs after 5s warmup, on two JSON endpoints (minimal object + 5-object list), no database. Memory via memory_get_peak_usage(). Measured 2026-07-24.
+          <p class="text-xs text-stone-500 leading-relaxed font-mono">
+            PHP 8.3 + Apache (mod_php) with OPcache. Each framework ran in its own Docker container, capped at 1 vCPU / 512MB RAM. Laravel and Symfony ran in production mode with cached config and routes. Load came from wrk (2 threads, 50 connections, 30s runs after a 5s warmup) against two JSON endpoints, a minimal object and a 5-object list, with no database. Memory was measured with memory_get_peak_usage(). CPU/req = 1000 ÷ req/s on one vCPU.
           </p>
         </div>
       </div>
 
-      <!-- The Animated Graph -->
-      <div class="p-8 rounded-2xl border border-white/10 bg-[#0c0d12] shadow-xl relative overflow-hidden space-y-8">
-
-        <!-- Tab Buttons to swap graph perspective -->
-        <div class="flex gap-3 bg-[#111319] p-1 border border-white/5 rounded-xl max-w-sm">
+      <div class="p-6 sm:p-8 rounded-2xl border border-white/10 bg-space-900 shadow-xl space-y-7">
+        <div class="flex gap-1 bg-space-950 p-1 border border-white/5 rounded-xl max-w-sm" role="tablist">
           @for (mode of benchmarkModes; track mode.id) {
-            <button (click)="toggleBenchmarkMode(mode.id)" [class]="benchmarkMode() === mode.id ? 'flex-1 text-center py-2 rounded-lg text-xs font-mono font-bold text-black bg-cyan-400 transition-all cursor-pointer' : 'flex-1 text-center py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white transition-all cursor-pointer'">
-              {{ mode.label }}
-            </button>
+            <button role="tab" [attr.aria-selected]="benchmarkMode() === mode.id" (click)="benchmarkMode.set(mode.id)"
+              class="flex-1 text-center py-2 rounded-lg text-xs font-mono transition-all cursor-pointer"
+              [class]="benchmarkMode() === mode.id ? 'font-bold text-space-950 bg-brand-400' : 'font-medium text-stone-400 hover:text-white'">{{ mode.label }}</button>
           }
         </div>
 
-				<div class="absolute inset-0 bg-radial-gradient(ellipse at bottom, rgba(6,182,212,0.03), transparent) pointer-events-none"></div>
-
-        <div class="flex justify-between items-center border-b border-white/5 pb-4">
-          <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">
-            {{ benchmarkHeaders[benchmarkMode()].title }}
-          </span>
-          <span class="text-[10px] bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded font-mono font-bold">
-            {{ benchmarkHeaders[benchmarkMode()].unit }}
-          </span>
+        <div class="flex justify-between items-center border-b border-white/5 pb-4 gap-3">
+          <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">{{ benchmarkHeaders[benchmarkMode()].title }}</span>
+          <span class="text-[10px] bg-brand-500/10 text-brand-300 px-2 py-0.5 rounded font-mono font-bold shrink-0">{{ benchmarkHeaders[benchmarkMode()].unit }}</span>
         </div>
 
-        <!-- Bars container -->
         <div class="space-y-6">
-          @for (row of benchmarkResults; track row.name) {
+          @for (row of benchmarkRows(); track row.name) {
             <div class="space-y-2">
-              <div class="flex justify-between text-xs font-semibold">
+              <div class="flex justify-between text-xs font-semibold gap-3">
                 @if (row.main) {
-                  <span class="text-white flex items-center gap-1.5">
-                    <img src="assets/logo.png" alt="logo" class="w-4 h-4" />
-                    <span>{{ row.name }}</span>
-                  </span>
-                  <span class="text-cyan-400 font-mono font-bold">{{ benchmarkMetric(row).value }}</span>
+                  <span class="text-white flex items-center gap-1.5"><img src="assets/logo-monocolor.png" alt="" class="h-4 w-auto" />{{ row.name }}</span>
+                  <span class="text-brand-300 font-mono font-bold">{{ row.value }}</span>
                 } @else {
-                  <span class="text-gray-400">{{ row.name }}</span>
-                  <span class="text-gray-300 font-mono">{{ benchmarkMetric(row).value }}</span>
+                  <span class="text-stone-400">{{ row.name }}</span>
+                  <span class="text-stone-300 font-mono">{{ row.value }}</span>
                 }
               </div>
               <div class="w-full h-3 bg-black/40 rounded-full overflow-hidden">
-                <div class="h-full rounded-full transition-all duration-700 {{ row.barClass }}" [style.width.%]="benchmarkMetric(row).pct"></div>
+                <div class="h-full rounded-full transition-all duration-700"
+                  [class]="row.main ? 'bg-gradient-to-r from-brand-300 to-brand-600' : 'bg-stone-600'"
+                  [style.width.%]="row.pct"></div>
               </div>
             </div>
           }
@@ -665,33 +625,27 @@
       </div>
     </div>
 
-    <!-- Full measured data -->
     <div class="mt-16 space-y-4">
       <div class="flex items-center justify-between flex-wrap gap-2">
         <h3 class="text-lg font-bold text-white">Full measured data</h3>
-        <span class="text-[10px] text-gray-500 font-mono">wrk -t2 -c50 -d30s &middot; latencies include queueing at 50 concurrent connections on 1 vCPU</span>
+        <span class="text-[10px] text-stone-500 font-mono">wrk -t2 -c50 -d30s · latencies include queueing at 50 connections on 1 vCPU</span>
       </div>
-      <div class="overflow-x-auto rounded-xl border border-white/5 bg-[#0c0d12]">
-        <table class="w-full text-left text-xs text-gray-400 font-mono">
+      <div class="overflow-x-auto rounded-xl border border-white/5 bg-space-900">
+        <table class="w-full text-left text-xs text-stone-400 font-mono">
           <thead class="bg-white/5 text-white">
             <tr>
-              <th class="p-3 border-b border-white/5">Framework</th>
-              <th class="p-3 border-b border-white/5">Endpoint</th>
-              <th class="p-3 border-b border-white/5">p50 latency</th>
-              <th class="p-3 border-b border-white/5">p99 latency</th>
-              <th class="p-3 border-b border-white/5">Req/sec</th>
-              <th class="p-3 border-b border-white/5">Peak mem/req</th>
+              <th class="p-3">Framework</th><th class="p-3">Endpoint</th><th class="p-3">p50 latency</th><th class="p-3">p99 latency</th><th class="p-3">Req/sec</th><th class="p-3">Peak mem/req</th>
             </tr>
           </thead>
           <tbody>
             @for (d of benchmarkDetails; track $index) {
-              <tr [class]="d.main ? 'bg-cyan-500/5' : ''">
-                <td class="p-3 border-b border-white/5" [class.text-cyan-300]="d.main">{{ d.framework }}</td>
-                <td class="p-3 border-b border-white/5">{{ d.endpoint }}</td>
-                <td class="p-3 border-b border-white/5">{{ d.p50 }}</td>
-                <td class="p-3 border-b border-white/5">{{ d.p99 }}</td>
-                <td class="p-3 border-b border-white/5">{{ d.rps }}</td>
-                <td class="p-3 border-b border-white/5">{{ d.mem }}</td>
+              <tr class="border-t border-white/5" [class]="d.main ? 'bg-brand-500/5' : ''">
+                <td class="p-3 whitespace-nowrap" [class]="d.main ? 'text-brand-300' : ''">{{ d.framework }}</td>
+                <td class="p-3">{{ d.endpoint }}</td>
+                <td class="p-3">{{ d.p50 }}</td>
+                <td class="p-3">{{ d.p99 }}</td>
+                <td class="p-3">{{ d.rps }}</td>
+                <td class="p-3">{{ d.mem }}</td>
               </tr>
             }
           </tbody>
@@ -701,95 +655,99 @@
   </div>
 </section>
 
-<!-- Getting Started / CLI Section -->
-<section id="get-started" class="relative z-10 py-24 border-t border-white/5 scroll-mt-20">
-  <div class="max-w-4xl mx-auto px-6 sm:px-12 text-center space-y-10">
-    <div class="space-y-4">
-      <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest font-semibold font-bold">Instant initialization</span>
-      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">Create Your Universe Today</h2>
-      <p class="text-gray-400 max-w-xl mx-auto leading-relaxed">
-        Begin building ultra-fast PHP APIs and robust web projects with Magrathea in two simple steps.
-      </p>
+<!-- ============================================================ GET STARTED -->
+<section id="get-started" class="border-t border-white/5 bg-space-900/60 py-24 scroll-mt-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-8 space-y-10">
+    <div class="text-center space-y-4">
+      <span class="text-brand-400 font-mono text-xs uppercase tracking-[0.2em] font-bold">Three steps</span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">Create your universe today</h2>
+      <p class="text-stone-400 max-w-xl mx-auto leading-relaxed">Install it, let the Setup Wizard configure it, then ask it what's wrong.</p>
     </div>
 
-    <div class="space-y-5 text-left max-w-2xl mx-auto">
-      <!-- Step 1 -->
-      <div class="rounded-xl border border-white/5 bg-[#0a0b0e] p-5 space-y-3">
-        <div class="flex items-center justify-between">
+    <ol class="space-y-4">
+      <li class="rounded-xl border border-white/5 bg-space-950/70 p-5 space-y-3">
+        <div class="flex items-center justify-between gap-3">
           <div class="flex items-center gap-2.5">
-            <span class="text-xs bg-cyan-500/10 text-cyan-400 px-2.5 py-1 rounded-full font-mono font-bold">STEP 1</span>
-            <span class="text-sm font-semibold text-white">Install via Composer</span>
+            <span class="text-[11px] bg-brand-500/10 text-brand-300 px-2.5 py-1 rounded-full font-mono font-bold">1</span>
+            <span class="text-sm font-semibold text-white">Install with Composer</span>
           </div>
-          <button (click)="copyCommand('composer require platypustechnology/magratheaphp2')" class="text-gray-500 hover:text-cyan-400 flex items-center gap-1 text-xs transition-colors cursor-pointer">
-            <span class="material-icons text-base">content_copy</span>
-            <span>Copy</span>
+          <button (click)="copy('install', installCmd)" class="text-stone-500 hover:text-brand-300 flex items-center gap-1 text-xs transition-colors cursor-pointer">
+            <span class="material-icons !text-base">{{ copied() === 'install' ? 'check' : 'content_copy' }}</span>{{ copied() === 'install' ? 'Copied' : 'Copy' }}
           </button>
         </div>
-        <div class="p-3 bg-black/40 rounded border border-white/5 font-mono text-xs text-gray-300">composer require platypustechnology/magratheaphp2</div>
-      </div>
+        <pre class="code p-3 bg-black/40 rounded-lg border border-white/5 text-xs text-stone-200 overflow-x-auto"><span class="text-brand-400 select-none">$ </span>{{ installCmd }}</pre>
+      </li>
 
-      <!-- Step 2 -->
-      <div class="rounded-xl border border-white/5 bg-[#0a0b0e] p-5 space-y-3">
-        <div class="flex items-center justify-between">
+      <li class="rounded-xl border border-white/5 bg-space-950/70 p-5 space-y-3">
+        <div class="flex items-center justify-between gap-3">
           <div class="flex items-center gap-2.5">
-            <span class="text-xs bg-cyan-500/10 text-cyan-400 px-2.5 py-1 rounded-full font-mono font-bold">STEP 2</span>
-            <span class="text-sm font-semibold text-white">Initialize the visual admin</span>
+            <span class="text-[11px] bg-brand-500/10 text-brand-300 px-2.5 py-1 rounded-full font-mono font-bold">2</span>
+            <span class="text-sm font-semibold text-white">Run the Setup Wizard</span>
           </div>
-          <button (click)="copyCommand(adminInitSnippet)" class="text-gray-500 hover:text-cyan-400 flex items-center gap-1 text-xs transition-colors cursor-pointer">
-            <span class="material-icons text-base">content_copy</span>
-            <span>Copy</span>
+          <button (click)="copy('setup', setupSnippet)" class="text-stone-500 hover:text-brand-300 flex items-center gap-1 text-xs transition-colors cursor-pointer">
+            <span class="material-icons !text-base">{{ copied() === 'setup' ? 'check' : 'content_copy' }}</span>{{ copied() === 'setup' ? 'Copied' : 'Copy' }}
           </button>
         </div>
-        <div class="p-3 bg-black/40 rounded border border-white/5 font-mono text-xs text-gray-300 space-y-0.5">
-          <div><span class="text-purple-400">&lt;?php</span>&nbsp;<span class="text-gray-500">// public/admin.php</span></div>
-          <div><span class="text-purple-400">require</span>&nbsp;<span class="text-orange-300">"bootstrap.php"</span>; <span class="text-gray-500">// Magrathea setup + StartSession()</span></div>
-          <div>&nbsp;</div>
-          <div><span class="text-purple-400">use</span>&nbsp;<span class="text-blue-300">Magrathea2\Admin\AdminManager</span>;</div>
-          <div><span class="text-yellow-200">AdminManager</span>::<span class="text-emerald-400">Instance</span>()-&gt;<span class="text-emerald-400">Start</span>(<span class="text-purple-400">new</span>&nbsp;<span class="text-yellow-200">MyAppAdmin</span>());</div>
-        </div>
-      </div>
-    </div>
+        <pre class="code p-3 bg-black/40 rounded-lg border border-white/5 text-xs leading-relaxed overflow-x-auto text-stone-300"><code [innerHTML]="setupHtml"></code></pre>
+        <p class="text-xs text-stone-500 leading-relaxed">
+          It works before any config exists. Every visit asks for the 8-digit token in <code class="text-stone-300">configs/.setup-token</code>, which only someone with access to the server's files can read.
+          <a [href]="links.setupWizard" target="_blank" rel="noopener noreferrer" class="text-brand-300 hover:underline">Setup Wizard guide →</a>
+        </p>
+      </li>
 
-    <div class="pt-4 flex flex-wrap justify-center gap-6">
-      <a href="https://github.com/PlatypusTechnology/MagratheaPHP2" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-6 py-3.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all text-white">
-        <span class="material-icons">star_outline</span>
-        <span>Star on GitHub</span>
+      <li class="rounded-xl border border-white/5 bg-space-950/70 p-5 space-y-3">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5">
+            <span class="text-[11px] bg-brand-500/10 text-brand-300 px-2.5 py-1 rounded-full font-mono font-bold">3</span>
+            <span class="text-sm font-semibold text-white">Check your work</span>
+          </div>
+          <button (click)="copy('check', checkCmd)" class="text-stone-500 hover:text-brand-300 flex items-center gap-1 text-xs transition-colors cursor-pointer">
+            <span class="material-icons !text-base">{{ copied() === 'check' ? 'check' : 'content_copy' }}</span>{{ copied() === 'check' ? 'Copied' : 'Copy' }}
+          </button>
+        </div>
+        <pre class="code p-3 bg-black/40 rounded-lg border border-white/5 text-xs text-stone-200 overflow-x-auto"><span class="text-brand-400 select-none">$ </span>{{ checkCmd }}</pre>
+      </li>
+    </ol>
+
+    <div class="pt-2 flex flex-wrap justify-center gap-4">
+      <a [href]="links.gettingStarted" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-6 py-3.5 bg-brand-400 text-space-950 font-bold rounded-xl hover:bg-brand-300 transition-all">
+        Getting started guide <span class="material-icons">import_contacts</span>
       </a>
-      <a href="https://www.platypusweb.com.br/magratheaphp2/docs/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-6 py-3.5 bg-cyan-500 text-black font-bold rounded-xl hover:bg-cyan-400 transition-all">
-        <span>Explore Full Documentation</span>
-        <span class="material-icons">import_contacts</span>
+      <a [href]="links.mdFiles" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-6 py-3.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all text-white">
+        <span class="material-icons">smart_toy</span> Get skill.md for your agent
+      </a>
+      <a [href]="links.github" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-6 py-3.5 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all text-white">
+        <span class="material-icons">star_outline</span> Star on GitHub
       </a>
     </div>
   </div>
 </section>
 
-<!-- Footer Bar -->
+</main>
+
+<!-- ============================================================ FOOTER -->
 <footer class="relative z-10 border-t border-white/5 bg-black/40 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-6 sm:px-12 py-12 flex flex-col md:flex-row justify-between items-center gap-8 text-xs text-gray-500">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-12 flex flex-col md:flex-row justify-between items-center gap-8 text-xs text-stone-500">
     <div class="flex items-center gap-3">
-      <div class="w-8 h-8">
-        <img src="assets/logo.png" alt="logo" class="w-full h-full" referrerpolicy="no-referrer" />
-      </div>
+      <img src="assets/logo-monocolor.png" alt="" class="h-8 w-auto" />
       <div class="flex flex-col">
-        <span class="text-white font-bold uppercase tracking-wider">MAGRATHEA<span class="text-cyan-400">PHP</span></span>
-        <span class="text-[10px] text-gray-500 mt-0.5">Developed by <a href="https://platypusweb.com.br" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-medium">Platypus Web</a></span>
+        <span class="text-white font-bold uppercase tracking-wider">MAGRATHEA<span class="text-brand-400">PHP</span></span>
+        <span class="text-[10px] text-stone-500 mt-0.5">Developed by <a [href]="links.platypus" target="_blank" rel="noopener noreferrer" class="text-brand-300 hover:underline font-medium">Platypus Web</a></span>
       </div>
     </div>
 
-    <div class="flex flex-wrap gap-x-8 gap-y-4 justify-center items-center">
-      <span>Built for PHP 8.1+</span>
-      <span>MIT Licensed</span>
-      <a href="https://platypusweb.com.br" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors text-gray-400 flex items-center gap-1 font-medium">
-        <span>Platypus Web</span>
-        <span class="material-icons text-xs">open_in_new</span>
-      </a>
-      <a href="https://github.com/PlatypusTechnology/MagratheaPHP2" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors">GitHub Repository</a>
-      <a href="https://www.platypusweb.com.br/magratheaphp2/docs/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400 transition-colors">Documentation</a>
+    <div class="flex flex-wrap gap-x-7 gap-y-3 justify-center items-center">
+      <span>PHP 8.1+</span>
+      <span>MIT licensed</span>
+      <a [href]="links.github" target="_blank" rel="noopener noreferrer" class="hover:text-brand-300 transition-colors">GitHub</a>
+      <a [href]="links.docs" target="_blank" rel="noopener noreferrer" class="hover:text-brand-300 transition-colors">Documentation</a>
+      <a [href]="links.migration" target="_blank" rel="noopener noreferrer" class="hover:text-brand-300 transition-colors">Migrating to 3.0</a>
+      <a [href]="links.platypus" target="_blank" rel="noopener noreferrer" class="hover:text-brand-300 transition-colors flex items-center gap-1">Platypus Web <span class="material-icons !text-xs">open_in_new</span></a>
     </div>
 
     <div class="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">
-      <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-      <span class="text-gray-400 font-mono text-[10px]">Stable Release {{ currentVersion() }}</span>
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span class="text-stone-400 font-mono text-[10px]">Stable release {{ currentVersion() }}</span>
     </div>
   </div>
 </footer>

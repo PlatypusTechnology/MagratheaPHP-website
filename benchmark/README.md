@@ -1,6 +1,6 @@
-# MagratheaPHP2 Benchmark Harness
+# MagratheaPHP Benchmark Harness
 
-Reproducible benchmark comparing **MagratheaPHP2**, **Slim 4**, **Laravel 12** and
+Reproducible benchmark comparing **MagratheaPHP 3**, **Slim 4**, **Laravel 12** and
 **Symfony 7** serving JSON API responses.
 
 ## What is measured
@@ -25,11 +25,19 @@ bootstrap, routing and JSON response overhead only:
 - Per-request peak memory reported by each app via an `X-Peak-Mem` response
   header (`memory_get_peak_usage(false)`)
 
+## Framework version
+
+The Magrathea app installs MagratheaPHP 3 (`platypustechnology/magratheaphp`)
+from its GitHub repository (`dev-master`, see `apps/magrathea/composer.json`)
+until 3.0 is published on Packagist; switch the constraint to `^3.0` then.
+The app's code is the same one the 2.x run used, with only the namespace
+renamed (`Magrathea2` → `Magrathea`).
+
 ## Running
 
 ```bash
 cd benchmark
-./run.sh
+bash run.sh
 ```
 
 Tunables (env vars): `DURATION` (default `30s`), `WARMUP` (`5s`),
